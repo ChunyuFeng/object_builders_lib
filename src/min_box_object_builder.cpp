@@ -30,6 +30,7 @@ namespace object_builder {
 
 void MinBoxObjectBuilder::build(
     const std::vector<PointICloudPtr> &cloud_clusters,
+    std::vector<ObjectType> &object_type,
     std::vector<ObjectPtr> *objects) {
     if (objects == nullptr) {
         return;
@@ -40,8 +41,10 @@ void MinBoxObjectBuilder::build(
     for (size_t idx = 0u; idx < cloud_clusters.size(); ++idx) {
         ObjectPtr obj(new Object);
         *(obj->cloud) = *cloud_clusters[idx];
+        obj->type = object_type[idx];
+        obj->setId(idx);
         buildObject(obj);
-        (*objects).push_back(obj);
+        (*objects).push_back(obj);       
     }
 }
 

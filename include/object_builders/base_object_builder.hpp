@@ -17,6 +17,7 @@ namespace object_builder {
 class BaseObjectBuilder {
  public:
     virtual void build(const std::vector<PointICloudPtr>& cloud_clusters,
+                       std::vector<ObjectType> &object_type,
                        std::vector<ObjectPtr>* objects) = 0;
 
     virtual void build(ObjectPtr object) = 0;
